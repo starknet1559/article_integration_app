@@ -60,3 +60,4 @@ gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
 gem "enum_help"
+gem 'devise'
