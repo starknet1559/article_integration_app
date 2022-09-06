@@ -1,0 +1,25 @@
+   <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <%= link_to "User", users_path, class: "nav-link active" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Post", new_post_path, class: "nav-link active" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Genres", genres_path, class: "nav-link active" %>
+          </li>
+
+          <% genre_list.each do |genre| %>
+            <li class="nav-item">
+              <p class="nav-link active">
+                <%= link_to genre.name, genre_path(genre) %>
+                <%= link_to genre_genre_likes_path(genre), method: :delete do %>♥
+                <% end %>
+              </p>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
