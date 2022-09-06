@@ -17,8 +17,13 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "homes#top"
+    get '/about', to: 'homes#about', as: 'about'
     resources :users, except: [:destroy,:new,:create]
     patch 'users/:id/withdraw', to: 'users#withdraw', as: 'withdraw'
+    resources :posts
+    resources :genres, only: [:index,:create,:show] do
+      resource :genre_likes, only: [:create, :destroy]
+    end
 
   end
 
