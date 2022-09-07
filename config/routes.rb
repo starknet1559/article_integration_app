@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get '/about', to: 'homes#about', as: 'about'
     resources :users, except: [:destroy,:new,:create]
     patch 'users/:id/withdraw', to: 'users#withdraw', as: 'withdraw'
-    resources :posts
+    resources :posts, except: [:edit,:update]
     resources :genres, only: [:index,:create,:show] do
       resource :genre_likes, only: [:create, :destroy]
     end

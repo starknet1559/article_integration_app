@@ -3,7 +3,6 @@ class Public::GenresController < ApplicationController
   def index
     @genres = Genre.all
     @genre_new = Genre.new
-    @genre_list = current_user.genres.all
   end
 
   def create
@@ -15,6 +14,10 @@ class Public::GenresController < ApplicationController
       @genres = Genre.all
       render :index
     end
+  end
+
+  def show
+    @genre_list = current_user.genres.all
   end
 
   private

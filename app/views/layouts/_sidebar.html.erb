@@ -11,10 +11,10 @@
             <%= link_to "Genres", genres_path, class: "nav-link active" %>
           </li>
 
-          <% genre_list.each do |genre| %>
+          <% current_user.genres.each do |genre| %>
             <li class="nav-item">
               <p class="nav-link active">
-                <%= link_to genre.name, genre_path(genre) %>
+                <%= link_to genre.name, genre_path(genre.id) %>
                 <%= link_to genre_genre_likes_path(genre), method: :delete do %>♥
                 <% end %>
               </p>
