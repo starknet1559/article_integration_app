@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row">
+    <%= render 'layouts/sidebar' %>
+    <div class="row-md-10 pb-3">
+        <h2>Post</h2>
+    </div>
+    <div>
+      <p><%= @post.title %></p>
+      <p><%= @post.content_url %></p>
+      <p><%= @post.description %></p>
+      <% @post_genres.each do |f| %>
+      <%= f.name %>
+      <% end %>
+      <% if @post.user == current_user %>
+        <%= link_to "delete", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+</div>
