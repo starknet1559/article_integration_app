@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row">
+    <%= render 'layouts/sidebar' %>
+    <div class="col-auto">
+        <h2>Popular</h2>
+    </div>
+
+    <% @posts.each do |f| %>
+    <div class="card-group">
+      <div class="card">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+          <div class="card-body">
+            <h5 class="card-title"><%= f.title %></h5>
+            <p class="card-text"><%= f.description %></p>
+          </div>
+          <div class="card-footer">
+            <%= link_to "Show", post_path(f.id), class: "btn btn-primary" %>
+          </div>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+</div>
