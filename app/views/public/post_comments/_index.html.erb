@@ -1,0 +1,20 @@
+<div class="container">
+  <% post.post_comments.each do |comments| %>
+  <div class="media my-5">
+    <%= image_tag comments.user.get_profile_image(100,100), class: "mr-3" %>
+    <div class="media-body">
+      <h5 class="mt-0"><%= comments.user.name %></h5>
+      <%= comments.comment %>
+      <% if comments.user == current_user %>
+        <%= link_to "削除する", post_post_comment_path(comments.post,comments), method: :delete %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <div>
+    <%= form_with model: [post, post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "comment" %>
+    <%= f.submit "送信する", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

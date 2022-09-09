@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :users, controllers: {
     sessions:      'public/sessions',
     passwords:     'public/passwords',
@@ -11,13 +11,15 @@ Rails.application.routes.draw do
     get '/about', to: 'homes#about', as: 'about'
     resources :users, except: [:destroy,:new,:create]
     patch '/users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
-    resources :posts, except: [:edit,:update]
+    resources :posts, except: [:edit,:update] do
+      resources :post_comments, only: [:create, :destroy]
+    end
     resources :genres, only: [:index,:create,:show] do
       resource :genre_likes, only: [:create, :destroy]
     end
 
   end
-  
+
   devise_for :admins, controllers: {
     sessions:      'admin/sessions',
     registrations: 'admin/registrations'
@@ -27,6 +29,6 @@ Rails.application.routes.draw do
     resources :users, only: [:index,:update]
   end
 
-  
+
 
 end

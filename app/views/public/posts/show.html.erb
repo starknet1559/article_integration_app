@@ -15,5 +15,6 @@
         <%= link_to "delete", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn btn-danger" %>
       <% end %>
     </div>
+    <%= render "public/post_comments/index", post: @post, post_comment: @post_comment %>
   </div>
 </div>
