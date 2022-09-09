@@ -30,6 +30,9 @@ class Public::PostsController < ApplicationController
     if @post.destroy
       redirect_to posts_path
       flash[:alert] = "投稿を削除しました。"
+    else
+      @post_genres = @post.genres.all
+      render :show
     end
   end
 

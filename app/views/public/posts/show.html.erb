@@ -6,7 +6,7 @@
     </div>
     <div>
       <p><%= @post.title %></p>
-      <p><%= @post.content_url %></p>
+      <a href="<%= @post.content_url %>"><%= @post.content_url %></a>
       <p><%= @post.description %></p>
       <% @post_genres.each do |f| %>
       <%= f.name %>

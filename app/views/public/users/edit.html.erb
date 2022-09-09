@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="row">
+    <%= render 'layouts/sidebar' %>
+    <div class="col">
+      <div class="col-8">
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+          <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
+          <h1 class="display-4"><%= @user.name %></h1>
+          <p class="lead"><%= @user.biography %></p>
+          <p><%= link_to "退会", withdraw_path, method: :patch, class: "btn btn-lg btn-primary", data: { confirm: "本当に退会しますか？" } %></p>
+        </div>
+      </div>
+      <div class="col">
+        <h4 class="mb-3">User Info</h4>
+        <%= form_with model: @user, local: true, method: :patch do |f| %>
+          <div class="mb-3">
+            <%= f.text_field :name, autofocus: true, placeholder:"User Name" %>
+          </div>
+          <div class="mb-3">
+            <%= f.text_area :biography, autofocus: true, placeholder:"Bio" %>
+          </div>
+          <div class="mb-3">
+            <%= f.file_field :profile_image, placeholder: "Image", accept: "image/*" %>
+          </div>
+          <div class="mb-3">
+            <%= f.submit "Submit", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
