@@ -26,13 +26,10 @@ class Public::UsersController < ApplicationController
 
   def withdraw
     @user = User.find(current_user.id)
-    if @user.update(is_deleted: true)
+    @user.update(is_deleted: true)
     reset_session
     flash[:notice] = "またの入会をお待ちしております"
     redirect_to root_path
-    else
-      render :edit
-    end
   end
 
   private

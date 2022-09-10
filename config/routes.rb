@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :users, except: [:destroy,:new,:create]
     patch '/users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
     resources :posts, except: [:edit,:update] do
+       resource :post_goods, only: [:create, :destroy]
+       resource :post_bads, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
     resources :genres, only: [:index,:create,:show] do
