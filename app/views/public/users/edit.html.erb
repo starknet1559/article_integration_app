@@ -7,7 +7,7 @@
           <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
           <h1 class="display-4"><%= @user.name %></h1>
           <p class="lead"><%= @user.biography %></p>
-          <p><%= link_to "退会", withdraw_path, method: :patch, class: "btn btn-lg btn-primary", data: { confirm: "本当に退会しますか？" } %></p>
+          <p><%= link_to "退会", withdraw_path(@user), method: :patch, class: "btn btn-lg btn-primary", data: { confirm: "本当に退会しますか？" } %></p>
         </div>
       </div>
       <div class="col">

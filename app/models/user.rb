@@ -6,12 +6,14 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
-  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :name, length: { minimum: 2, maximum: 20 }
 
   has_many :post_comments, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :genre_likes, dependent: :destroy
   has_many :genres, through: :genre_likes, dependent: :destroy
+  has_many :post_goods, dependent: :destroy
+  has_many :post_bads, dependent: :destroy
 
   def get_profile_image(width, height)
     unless profile_image.attached?
