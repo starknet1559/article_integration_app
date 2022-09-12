@@ -1,0 +1,22 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Icon</th>
+      <th scope="col">Name</th>
+      <th scope="col">Bio</th>
+      <th scope="col">Follow</th>
+      <th scope="col">Show</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= image_tag user.get_profile_image(50,50) %></td>
+        <td><%= user.name %></td>
+        <td><%= user.biography %></td>
+        <td><%= render 'public/relationships/btn', user: user %></td>
+        <td><%= link_to "Show", user_path(user), class: "btn btn-primary mb-2" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

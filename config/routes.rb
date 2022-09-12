@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "homes#top"
     get '/about', to: 'homes#about', as: 'about'
-    resources :users, except: [:destroy,:new,:create]
+    resources :users, except: [:destroy,:new,:create] do
+      resource :relationships, only: [:create, :destroy]
+  	  get 'followings' => 'relationships#followings', as: 'followings'
+  	  get 'followers' => 'relationships#followers', as: 'followers'
+    end
+    resource :relationships, only: [:create,:destroy]
     patch '/users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
     resources :posts, except: [:edit,:update] do
        resource :post_goods, only: [:create, :destroy]

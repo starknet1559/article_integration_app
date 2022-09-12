@@ -17,11 +17,12 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-     @posts = Post.page(params[:page]).per(10)
+    @posts = Post.active_post.page(params[:page]).per(10)
   end
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
     @post_genres = @post.genres.all
     @post_comment = PostComment.new
   end

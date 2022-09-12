@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
+    @user = User.active.find(params[:id])
     @post = @user.posts
   end
 
@@ -21,12 +21,15 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    @users = User.page(params[:page]).per(20)
+    @users = User.active.page(params[:page]).per(20)
   end
 
   def withdraw
     @user = User.find(current_user.id)
     @user.update(is_deleted: true)
+    @user.post_comments.destroy_all
+    @user.followings.destroy_all
+    @user.followers.destroy_all
     reset_session
     flash[:notice] = "またの入会をお待ちしております"
     redirect_to root_path

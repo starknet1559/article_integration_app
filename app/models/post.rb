@@ -11,12 +11,14 @@ class Post < ApplicationRecord
   has_many :post_goods, dependent: :destroy
   has_many :post_bads, dependent: :destroy
 
+  scope :active_post, -> { joins(:user).where(user_id: User.where(is_deleted: false)) }
+
   def post_good_by?(user)
-    post_goods.exists?(user_id: user.id)
+    post_goods.where(user_id: user.id).exists?
   end
 
   def post_bad_by?(user)
-    post_bads.exists?(user_id: user.id)
+    post_bads.where(user_id: user.id).exists?
   end
 
 end

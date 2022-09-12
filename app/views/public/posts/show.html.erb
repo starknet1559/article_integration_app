@@ -1,20 +1,51 @@
 <div class="container-fluid">
   <div class="row">
     <%= render 'layouts/sidebar' %>
-    <div class="row-md-10 pb-3">
-        <h2>Post</h2>
+    <div class="col-lg-8">
+      <article>
+        <header class="mb-4">
+          <h1 class="fw-bolder mb-1"><%= @post.title %></h1>
+          <div class="text-muted fst-italic mb-2">
+            <%= @user.name %>
+          </div>
+          <% @post_genres.each do |f| %>
+            <%= link_to f.name, genre_path(f.id), class: "badge badge-info" %>
+          <% end %>
+        </header>
+        <figure class="mb-4">
+          <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
+        </figure>
+        <h4>URL</h4>
+        <a href="<%= @post.content_url %>"><%= @post.content_url %></a>
+        <section class="mb-5">
+          <p class="fs-5 mb-4">
+            <%= @post.description %>
+          </p>
+        </section>
+        <% if @post.user == current_user %>
+          <%= link_to "delete", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn btn-danger" %>
+        <% else %>
+          <%= render 'public/relationships/btn', user: @user %>
+        <% end %>
+      </article>
+      <section class="mb-5">
+        <div class="card bg-light">
+          <div class="card-header">Comment
+          </div>
+          <div class="card-body">
+            <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+          </div>
+        </div>
+      </section>
+      <div class="post-comments-index">
+        <%= render "public/post_comments/index", post: @post, post_comment: @post_comment %>
+      </div>
+      <div class=<%= "good-btn-" + @post.id.to_s %> >
+        <%= render 'public/post_goods/good', post: @post %>
+      </div>
+      <div class=<%= "bad-btn-" + @post.id.to_s %> >
+        <%= render 'public/post_bads/bad', post: @post %>
+      </div>
     </div>
-    <div>
-      <p><%= @post.title %></p>
-      <a href="<%= @post.content_url %>"><%= @post.content_url %></a>
-      <p><%= @post.description %></p>
-      <% @post_genres.each do |f| %>
-      <%= f.name %>
-      <% end %>
-      <% if @post.user == current_user %>
-        <%= link_to "delete", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn btn-danger" %>
-      <% end %>
-    </div>
-    <%= render "public/post_comments/index", post: @post, post_comment: @post_comment %>
   </div>
 </div>

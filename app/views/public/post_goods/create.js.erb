@@ -1,0 +1,2 @@
+$('.good-btn-<%= @post_good.post_id %>').html("<%= escape_javascript(render partial: 'public/post_goods/good', locals: {post: @post_good.post}) %>");
+$('.bad-btn-<%= @post_good.post_id %>').html("<%= escape_javascript(render partial: 'public/post_bads/bad', locals: {post: @post_good.post}) %>");
