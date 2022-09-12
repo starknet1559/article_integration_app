@@ -7,7 +7,11 @@
       <p class="lead"><%= @user.biography %></p>
       <% if @user == current_user %>
       <p><%= link_to "Edit", edit_user_path(current_user), class: "btn btn-lg btn-primary" %></p>
+      <% else %>
+      <p><%= render 'public/relationships/btn', user: @user %></p>
       <% end %>
+      <p><%= link_to @user.followings.count, user_followings_path(@user) %>Follow</p>
+      <p><%= link_to @user.followers.count, user_followers_path(@user) %>Follower</p>
     </div>
   </div>
 </div>

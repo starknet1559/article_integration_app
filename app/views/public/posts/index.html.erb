@@ -15,8 +15,12 @@
           </div>
           <div class="card-footer">
             <%= link_to "Show", post_path(f.id), class: "btn btn-primary" %>
-            <%= render 'public/post_goods/good', post: f %>
-            <%= render 'public/post_bads/bad', post: f %>
+            <div class=<%= "good-btn-" + f.id.to_s %> >
+               <%= render 'public/post_goods/good', post: f %>
+            </div>
+            <div class=<%= "bad-btn-" + f.id.to_s %> >
+               <%= render 'public/post_bads/bad', post: f %>
+            </div>
           </div>
       </div>
     </div>
