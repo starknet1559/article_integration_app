@@ -1,14 +1,15 @@
-<div class="border p-3">
-  <div class="media">
-    <% post.post_comments.each do |comments| %>
-      <%= image_tag comments.user.get_profile_image(100,100), class: "mr-3" %>
-      <div class="media-body">
-        <h5 class="mb-1 text-primary"><%= comments.user.name %></h5>
-        <%= comments.comment %>
+<% post.post_comments.each do |comments| %>
+  <div class="media mt-3">
+    <%= image_tag comments.user.get_profile_image(50,50), class: "mr-3" %>
+    <div class="media-body">
+      <h6 class="mb-1 text-primary"><%= comments.user.name %></h6>
+      <p class="text-break"><%= comments.comment %>
         <% if comments.user == current_user %>
-          <%= link_to "Destroy", post_post_comment_path(comments.post,comments), method: :delete, remote: true %>
+          <%= link_to post_post_comment_path(comments.post,comments), method: :delete, remote: true do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
-      </div>
-    <% end %>
+      </p>
+    </div>
   </div>
-</div>
+ <% end %>

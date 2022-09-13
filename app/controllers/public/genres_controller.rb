@@ -17,7 +17,8 @@ class Public::GenresController < ApplicationController
   end
 
   def show
-    @genre_list = current_user.genres.all
+    genre = Genre.find(params[:id])
+    @posts = genre.posts.active_post
   end
 
   private

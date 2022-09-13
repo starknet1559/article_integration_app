@@ -1,0 +1,36 @@
+<div class="container">
+  <% @posts.each do |f| %>
+    <div class="card mb-3">
+      <div class="row no-gutters">
+
+        <div class="col-md-2">
+          <%= image_tag f.user.get_profile_image(100,100), class: "rounded-circle" %>
+            <h6 class="card-title"><%= link_to f.user.name, user_path(f.user.id) %></h6>
+        </div>
+
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= f.title %></h5>
+            <p class="card-text"><%= f.description.truncate(50) %></p>
+            <% f.genres.each do |genre| %>
+              <%= link_to genre.name, genre_path(genre.id), class: "badge badge-info" %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-md-2 card-footer">
+          <div class="text-center">
+            <%= link_to "Show URL", post_path(f.id), class: "btn btn-primary" %>
+          </div>
+          <div class="text-center <%= "good-btn-" + f.id.to_s %>" >
+            <%= render 'public/post_goods/good', post: f %>
+          </div>
+          <div class="text-center <%= "bad-btn-" + f.id.to_s %>" >
+            <%= render 'public/post_bads/bad', post: f %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>
