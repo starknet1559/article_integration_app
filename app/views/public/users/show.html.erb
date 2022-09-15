@@ -1,17 +1,31 @@
 <div class="container-fluid">
   <div class="row">
     <%= render 'layouts/sidebar' %>
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
-      <h1 class="display-4"><%= @user.name %></h1>
-      <p class="lead"><%= @user.biography %></p>
-      <% if @user == current_user %>
-      <p><%= link_to "Edit", edit_user_path(current_user), class: "btn btn-lg btn-primary" %></p>
-      <% else %>
-      <p><%= render 'public/relationships/btn', user: @user %></p>
-      <% end %>
-      <p><%= link_to @user.followings.count, user_followings_path(@user) %>Follow</p>
-      <p><%= link_to @user.followers.count, user_followers_path(@user) %>Follower</p>
+
+    <div class="col-md-8">
+      <div class="media">
+        <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
+        <div class="media-body ml-3">
+          <h5 class="my-3"><%= @user.name %></h5>
+          <%= link_to @user.followers.count, user_followers_path(@user) %>Followers/
+          <%= link_to @user.followings.count, user_followings_path(@user) %>Following
+        </div>
+      </div>
+      <div class="col-6 mt-3">
+        <% if @user == current_user %>
+          <%= link_to "Edit", edit_user_path(current_user), class: "btn btn-outline-success btn-lg btn-block" %>
+        <% else %>
+          <%= render 'public/relationships/btn', user: @user %>
+        <% end %>
+      </div>
+      <div class="my-3 border-top">
+        <h5 class="my-2">About</h5>
+        <p><%= @user.biography %></p>
+      </div>
+      <div class="row my-3 border-top">
+        <%= render 'public/posts/index', posts: @posts %>
+      </div>
     </div>
+
   </div>
 </div>

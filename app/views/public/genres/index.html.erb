@@ -1,38 +1,45 @@
 <div class="container-fluid">
   <div class="row">
     <%= render 'layouts/sidebar' %>
-    <div class="col-md-10 mx-auto">
-      <div class="row-md-10 pb-3">
-        <h2>Genres</h2>
-      </div>
 
-      <div class="form-row align-items-center">
+    <div class="col-md-7 ml-4 my-3">
+      <h2 class="mb-3"><i class="fas fa-tag"></i>Generate new genre tags</h2>
+      <div class="form-group">
         <%= form_with model: @genre_new, url: genres_path, local: true, method: :post do |f| %>
-          <div class="col-auto my-1">
-            <%= f.text_field :name, class: "form-control mb-2", placeholder: "Genre name" %>
+          <div class="form-group">
+            <%= f.text_field :name, class: "form-control mb-2", placeholder: "genre name" %>
           </div>
-          <div class="col-auto my-1">
-            <%= f.submit "Submit", class: "btn btn-primary mb-2" %>
+          <div class="form-group">
+            <%= f.submit "Generate", class: "btn btn-outline-primary form-control" %>
           </div>
         <% end %>
       </div>
 
-      <div class="row-md-10 pb-3">
-        <h3>Genres Index</h3>
+      <div class="row-md-10 my-5 border-top">
+        <h3 class="mt-2"><i class="fas fa-tags"></i>Genre Tags</h3>
       </div>
-
       <div class="row-md-10 pb-3">
         <% @genres.each do |genre| %>
           <% if genre.genre_likes_by?(current_user) %>
-            <%= link_to genre.name, genre_path(genre.id), class: "badge badge-info" %>
-              <%= link_to genre_genre_likes_path(genre), method: :delete do %>
-                ♥<%= genre.genre_likes.count %>
-              <% end %>
+            <%= link_to genre_path(genre.id), class: "btn btn-outline-primary mb-2" do %>
+              <%= genre.name %>
+              <span class="badge badge-outline-primary">
+                <%= genre.posts.active_post.count %>
+              </span>
+            <% end %>
+            <%= link_to genre_genre_likes_path(genre), method: :delete do %>
+              <i class="fas fa-minus-circle mr-2"></i>
+            <% end %>
           <% else %>
-            <%= link_to genre.name, genre_path(genre.id), class: "badge badge-info" %>
-              <%= link_to genre_genre_likes_path(genre), method: :post do %>
-                ♡<%= genre.genre_likes.count %>
-              <% end %>
+            <%= link_to genre_path(genre.id), class: "btn btn-outline-primary mb-2" do %>
+              <%= genre.name %>
+              <span class="badge badge-outline-primary">
+                <%= genre.posts.active_post.count %>
+              </span>
+            <% end %>
+            <%= link_to genre_genre_likes_path(genre), method: :post do %>
+              <i class="fas fa-plus-circle mr-2"></i>
+            <% end %>
           <% end %>
         <% end %>
       </div>

@@ -1,25 +1,34 @@
-   <nav class="d-none d-md-block bg-light sidebar">
+   <nav class="col-md-2 d-none d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <%= link_to "User", users_path, class: "nav-link active" %>
+            <%= link_to users_path, class: "nav-link active" do %>
+              <i class="fas fa-users mr-1"></i>Users
+            <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to "Post", new_post_path, class: "nav-link active" %>
+            <%= link_to new_post_path, class: "nav-link active" do %>
+              <i class="fas fa-plus mr-1"></i>Post
+            <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to "Genres", genres_path, class: "nav-link active" %>
+            <%= link_to genres_path, class: "nav-link active" do %>
+              <i class="fas fa-tags mr-1"></i>Genres
+            <% end %>
           </li>
-
           <% current_user.genres.each do |genre| %>
-            <li class="nav-item">
-              <p class="nav-link active">
-                <%= link_to genre.name, genre_path(genre.id) %>
-                <%= link_to genre_genre_likes_path(genre), method: :delete do %>♥
-                <% end %>
-              </p>
+            <li class="nav-item nav-link active">
+              <%= link_to genre.name, genre_path(genre.id) %>
+              <%= link_to genre_genre_likes_path(genre), method: :delete do %>
+                <i class="fas fa-minus-circle"></i>
+              <% end %>
             </li>
           <% end %>
+          <li class="nav-item">
+            <%= link_to destroy_user_session_path, method: :delete, class: "nav-link active" do %>
+              <i class="fas fa-sign-out-alt mr-1"></i>Sign out
+            <% end %>
+          </li>
         </ul>
       </div>
     </nav>

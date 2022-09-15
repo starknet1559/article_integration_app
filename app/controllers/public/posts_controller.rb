@@ -17,7 +17,11 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.active_post.page(params[:page]).per(10)
+    if params[:sort_good]
+      @posts = Post.joins(:post_goods).where(post_goods: Post.created_this_week).group(:id).order("count(post_id) desc")
+    else
+      @posts = Post.active_post.order(created_at: :desc).page(params[:page]).per(10)
+    end
   end
 
   def show

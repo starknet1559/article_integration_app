@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.active.find(params[:id])
-    @post = @user.posts
+    @posts = @user.posts.all
   end
 
   def edit
