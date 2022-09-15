@@ -1,11 +1,10 @@
 import $ from 'jquery'
 import 'select2'
+import 'select2/dist/css/select2.css'
+
 
 $(function () {
-  $('.js-searchable').select2({
-    dropdownAutoWidth: true,
-    theme: 'bootstrap4',
-    placeholder: "検索語句を入力",
-    closeOnSelect: false
+  $('#post_genre_ids').select2({
+    placeholder: "Search Tag"
   });
 });

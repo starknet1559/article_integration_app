@@ -9,16 +9,17 @@ class Public::GenresController < ApplicationController
     @genre_new = Genre.new(genre_params)
     if @genre_new.save
       redirect_to genres_path
-      flash[:notice] = "ジャンルタグを追加しました。"
+      flash[:notice] = "ジャンルタグを生成しました"
     else
       @genres = Genre.all
       render :index
+      flash[:alert] = "すでに同じ名前のジャンルタグが存在します"
     end
   end
 
   def show
-    genre = Genre.find(params[:id])
-    @posts = genre.posts.active_post
+    @genre = Genre.find(params[:id])
+    @posts = @genre.posts.active_post
   end
 
   private

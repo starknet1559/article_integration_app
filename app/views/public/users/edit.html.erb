@@ -1,32 +1,35 @@
 <div class="container-fluid">
   <div class="row">
     <%= render 'layouts/sidebar' %>
-    <div class="col">
-      <div class="col-8">
-        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-          <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
-          <h1 class="display-4"><%= @user.name %></h1>
-          <p class="lead"><%= @user.biography %></p>
-          <p><%= link_to "退会", withdraw_path(@user), method: :patch, class: "btn btn-lg btn-primary", data: { confirm: "本当に退会しますか？" } %></p>
+
+    <div class="col-md-7">
+      <div class="pricing-header px-3 py-3 mx-auto text-center">
+        <h4>Edit profile</h4>
+        <div class="my-2">
+          <%= form_with model: @user, local: true, method: :patch do |f| %>
+            <div class="form-group mb-3">
+              <%= f.label :profile_image do %>
+                <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
+                <i class="fas fa-plus-circle"></i>
+                <%= f.file_field :profile_image, style: "display:none;" %>
+              <% end %>
+            </div>
+            <div class="form-group mb-3">
+              <%= f.text_field :name, autofocus: true, placeholder:"User Name", class: "form-control" %>
+            </div>
+            <div class="form-group mb-3">
+              <%= f.text_area :biography, autofocus: true, placeholder:"Bio", class: "form-control", rows: "5" %>
+            </div>
+            <div class="form-group mb-3">
+              <%= f.submit "Save", class: "btn btn-outline-success form-control" %>
+            </div>
+          <% end %>
         </div>
       </div>
-      <div class="col">
-        <h4 class="mb-3">User Info</h4>
-        <%= form_with model: @user, local: true, method: :patch do |f| %>
-          <div class="mb-3">
-            <%= f.text_field :name, autofocus: true, placeholder:"User Name" %>
-          </div>
-          <div class="mb-3">
-            <%= f.text_area :biography, autofocus: true, placeholder:"Bio" %>
-          </div>
-          <div class="mb-3">
-            <%= f.file_field :profile_image, placeholder: "Image", accept: "image/*" %>
-          </div>
-          <div class="mb-3">
-            <%= f.submit "Submit", class: "btn btn-primary" %>
-          </div>
-        <% end %>
+      <div class="text-right">
+        <%= link_to "Delete account", withdraw_path(@user), method: :patch, class: "btn btn-outline-danger btn-sm", data: { confirm: "本当に退会しますか？" } %>
       </div>
     </div>
+
   </div>
 </div>

@@ -1,19 +1,19 @@
-<div class="container">
-  <header class="blog-header py-3">
-    <div class="row flex-nowrap justify-content-between align-items-center">
-      <div class="col-4 pt-1"></div>
-      <div class="col-4 text-center">
-        <%= link_to "Article Aggregator", root_path, class: "blog-header-logo text-dark" %>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal">
+    <%= link_to "Article Aggregator", root_path, class: "blog-header-logo text-dark" %>
+  </h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <% if user_signed_in? %>
+      <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Home
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to "Popular", posts_path(sort_good: "true"), class: "p-2 text-dark" %>
+        <%= link_to "New", posts_path , class: "p-2 text-dark" %>
       </div>
-      <div class="col-4 d-flex justify-content-end align-items-center">
-        <nav class="my-2 my-md-0 mr-md-3">
-        <% if user_signed_in? %>
-          <%= link_to "Home", posts_path , class: "p-2 text-dark" %>
-          <%= link_to "My page", user_path(current_user) , class: "p-2 text-dark" %>
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary" %>
-        <% end %>
-        </nav>
-      </div>
-    </div>
-  </header>
+      <%= link_to user_path(current_user) , class: "p-2 text-dark" do %>
+        <%= image_tag current_user.get_profile_image(50,50), class: "rounded-circle" %>
+      <% end %>
+    <% end %>
+  </nav>
 </div>
