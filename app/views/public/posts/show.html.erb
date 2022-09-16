@@ -39,7 +39,7 @@
           <% end %>
         </footer>
         <% if @post.user == current_user %>
-          <%= link_to "delete", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn btn-danger" %>
+          <%= link_to "Delete", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn btn-danger" %>
         <% end %>
       </article>
     </div>
