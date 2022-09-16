@@ -2,7 +2,7 @@
   <div class="media mt-3">
     <%= image_tag comments.user.get_profile_image(50,50), class: "mr-3" %>
     <div class="media-body">
-      <h6 class="mb-1 text-primary"><%= comments.user.name %></h6>
+      <h6 class="mb-1 text-primary"><%= link_to comments.user.name, user_path(comments.user.id) %></h6>
       <p class="text-break"><%= comments.comment %>
         <% if comments.user == current_user %>
           <%= link_to post_post_comment_path(comments.post,comments), method: :delete, remote: true do %>

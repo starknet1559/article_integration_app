@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def show
     @user = User.active.find(params[:id])
@@ -13,10 +14,10 @@ class Public::UsersController < ApplicationController
     @user = User.find(current_user.id)
     if @user.update(user_params)
       redirect_to user_path(current_user)
-      flash[:notice] = "変更しました。"
+      flash[:notice] = "変更しました"
     else
+      flash[:alert] = "編集に失敗しました"
       render :edit
-      flash[:alert] = "編集に失敗しました。"
     end
   end
 

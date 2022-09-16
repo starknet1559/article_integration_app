@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @post_new = Post.new
@@ -10,8 +11,9 @@ class Public::PostsController < ApplicationController
     @post_new.user_id = current_user.id
     if @post_new.save
       redirect_to post_path(@post_new.id)
-      flash[:notice] = "投稿に成功しました。"
+      flash[:notice] = "投稿に成功しました"
     else
+      flash[:alert] = "投稿に失敗しましたs"
       render :new
     end
   end
@@ -35,7 +37,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.destroy
       redirect_to posts_path
-      flash[:alert] = "投稿を削除しました。"
+      flash[:alert] = "投稿を削除しました"
     else
       @post_genres = @post.genres.all
       render :show
