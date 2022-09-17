@@ -1,5 +1,4 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!
 
   def show
     @user = User.active.find(params[:id])
