@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="row">
+    <%= render 'layouts/sidebar' %>
+    <div class="col-md-8">
+      <% if @model == 'user' %>
+        <h3>Users search for "<%= @content %>"</h3>
+        <%= render 'public/users/index', users: @users %>
+      <% elsif @model == 'post' %>
+        <h3>Posts search for "<%= @content %>"</h3>
+        <%= render 'public/posts/index', posts: @posts %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

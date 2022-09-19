@@ -47,4 +47,13 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  def self.search_for(content)
+    if search_for(content)
+      User.active.where(['name LIKE ?', "%#{content}%"])
+    else
+      redirect_to request.referer
+      flash[:alert] = "ユーザーが見つかりませんでした"
+    end
+  end
+
 end

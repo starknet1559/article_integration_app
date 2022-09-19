@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index,:create,:show] do
       resource :genre_likes, only: [:create, :destroy]
     end
-
+    get '/search', to: 'searches#search'
   end
 
   devise_for :admins, controllers: {

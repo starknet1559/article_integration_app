@@ -1,19 +1,27 @@
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white bord">
   <h5 class="my-0 mr-md-auto font-weight-normal">
     <%= link_to "Article Aggregator", root_path, class: "blog-header-logo text-dark" %>
   </h5>
-  <nav class="my-2 my-md-0 mr-md-3">
-    <% if user_signed_in? %>
-      <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Home
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <%= link_to "Popular", posts_path(sort_good: "true"), class: "p-2 text-dark" %>
-        <%= link_to "New", posts_path , class: "p-2 text-dark" %>
-      </div>
-      <%= link_to user_path(current_user) , class: "p-2 text-dark" do %>
-        <%= image_tag current_user.get_profile_image(50,50), class: "rounded-circle" %>
-      <% end %>
+
+  <% if user_signed_in? %>
+    <div class="form-inline mt-2 mt-md-0 mr-3">
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :content, class: "form-control mr-sm-2" %>
+      <%= f.select :model, options_for_select({"User" => "user", "Post" => "post" }),{},{class: 'custom-select my-1 mr-sm-2'} %>
+      <%= f.submit "Search", class: "btn btn-outline-success" %>
     <% end %>
-  </nav>
+    </div>
+    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Home
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <%= link_to "Popular", posts_path(sort_good: "true"), class: "p-2 text-dark" %>
+      <%= link_to "New", posts_path , class: "p-2 text-dark" %>
+    </div>
+    <%= link_to user_path(current_user) , class: "p-2 text-dark" do %>
+      <%= image_tag current_user.get_profile_image(50,50), class: "rounded-circle" %>
+    <% end %>
+  <% else %>
+    <%= link_to "Admin", admin_session_path, class: "p-2 text-dark" %>
+  <% end %>
 </div>

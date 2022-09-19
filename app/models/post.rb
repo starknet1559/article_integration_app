@@ -22,4 +22,13 @@ class Post < ApplicationRecord
     post_bads.where(user_id: user.id).exists?
   end
 
+  def self.search_for(content)
+    if search_for(content)
+      Post.active_post.where(['title LIKE ?', "%#{content}%"])
+    else
+      redirect_to request.referer
+      flash[:alert] = "投稿が見つかりませんでした"
+    end
+  end
+
 end
