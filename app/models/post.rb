@@ -23,7 +23,7 @@ class Post < ApplicationRecord
   end
 
   def self.search_for(content)
-    if search_for(content)
+    if search_for
       Post.active_post.where(['title LIKE ?', "%#{content}%"])
     else
       redirect_to request.referer

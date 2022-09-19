@@ -48,7 +48,7 @@ class User < ApplicationRecord
   end
 
   def self.search_for(content)
-    if search_for(content)
+    if search_for
       User.active.where(['name LIKE ?', "%#{content}%"])
     else
       redirect_to request.referer
