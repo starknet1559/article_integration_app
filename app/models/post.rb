@@ -23,12 +23,7 @@ class Post < ApplicationRecord
   end
 
   def self.search_for(content)
-    if search_for
-      Post.active_post.where(['title LIKE ?', "%#{content}%"])
-    else
-      redirect_to request.referer
-      flash[:alert] = "投稿が見つかりませんでした"
-    end
+    Post.active_post.where(['title LIKE ?', "%#{content}%"])
   end
 
 end
