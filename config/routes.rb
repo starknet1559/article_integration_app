@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       resource :genre_likes, only: [:create, :destroy]
     end
     get '/search', to: 'searches#search'
+    delete 'notifications/destroy_all', to: 'notifications#destroy_all', as: 'notifications_destroy_all'
+    resources :notifications, only: [:index,:destroy]
   end
 
   devise_for :admins, controllers: {

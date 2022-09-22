@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row">
+    <%= render 'layouts/sidebar' %>
+    <div class="col-md-8">
+      <h3 class="text-center">Notification</h3>
+      <%= link_to notifications_destroy_all_path, method: :delete do %>
+        <i class="fas fa-trash" style="color: black;"></i>
+        <h7 style="color: black;">delete</h7>
+      <% end %>
+      <hr>
+      <% if @notifications.exists? %>
+        <%= render 'index', notifications: @notifications %>
+      <% else %>
+        <p>通知はありません</p>
+      <% end %>
+    </div>
+    <%= paginate @notifications %>
+  </div>
+</div>

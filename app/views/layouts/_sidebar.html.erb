@@ -1,5 +1,8 @@
-   <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
+   <div class="col-md-3 col-xl-2 sidebar bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <nav class="bd-links collapse show">
         <ul class="nav flex-column">
           <li class="nav-item">
             <%= link_to users_path, class: "nav-link active" do %>
@@ -30,5 +33,5 @@
             <% end %>
           </li>
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </div>

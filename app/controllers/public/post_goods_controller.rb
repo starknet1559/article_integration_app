@@ -7,6 +7,8 @@ class Public::PostGoodsController < ApplicationController
       post_bad.destroy
     end
     @post_good.save
+    post.create_notification_by(current_user)
+    respond_to :js
   end
 
   def destroy

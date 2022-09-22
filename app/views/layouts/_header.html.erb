@@ -18,12 +18,22 @@
           <%= link_to "New", posts_path , class: "dropdown-item" %>
         </div>
       </li>
+      <li class="nav-item">
+        <%= link_to notifications_path do %>
+          <% if uncheck_notifications.any? %>
+            <i class="far fa-bell fa-lg"></i>
+            <i class="fas fa-circle fa-xs mb-2 pb-1"></i>
+          <% else %>
+            <i class="far fa-bell fa-lg"></i>
+          <% end %>
+        <% end %>
+      </li>
     </ul>
     <div class="form-inline mt-2 mt-md-0 mr-3">
       <%= form_with url: search_path, method: :get, local: true do |f| %>
         <%= f.text_field :content, class: "form-control mr-sm-2" %>
         <%= f.select :model, options_for_select({"User" => "user", "Post" => "post" }),{},{class: 'custom-select my-1 mr-sm-2'} %>
-        <%= f.submit "Search", class: "btn btn-outline-success" %>
+        <%= f.submit "Search", class: "btn btn-outline-primary" %>
       <% end %>
     </div>
     <%= link_to user_path(current_user) , class: "p-2 text-dark" do %>

@@ -1,0 +1,21 @@
+<% @notifications.each do |notification| %>
+  <ul class="list-unstyled">
+    <li class="media">
+      <%= link_to user_path(notification.visiter) do %>
+        <%= image_tag notification.visiter.get_profile_image(50,50) %>
+      <% end %>
+      <div class="media-body">
+        <%= notification_form(notification) %>
+        <span class="text-muted">
+          <%= " (#{time_ago_in_words(notification.created_at)} 前)" %>
+        </span>
+        <%= link_to notification_path(notification), method: :delete do %>
+          <i class="fas fa-trash"></i>
+        <% end %>
+        <% if !notification.comment_id.nil? %>
+          <p class="text-muted"><%= @comment %></p>
+        <% end %>
+      </div>
+    </li>
+  </ul>
+<% end %>
