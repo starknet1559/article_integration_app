@@ -2,7 +2,7 @@
   <%= image_tag 'sample-author1.jpg', size: '100x100' %>
   <h2 class="h3 mb-3 font-weight-normal">Admin Log in</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_with model: @admin, url: admin_session_path do |f| %>
     <div class="form-label-group">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
     </div>

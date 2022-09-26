@@ -37,7 +37,7 @@ class Post < ApplicationRecord
         action: "good"
       )
       if notification.visiter_id == notification.visited_id
-        notification.checked = true
+        notification.check = true
       end
       notification.save if notification.valid?
     end

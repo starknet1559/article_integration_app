@@ -1,0 +1,66 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+
+      <div class="row-md-10 pb-3">
+        <h2>Users</h2>
+      </div>
+
+      <div class="row-md-10 pb-3">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th>
+                ID
+              </th>
+              <th>
+                Name
+              </th>
+              <th>
+                Email
+              </th>
+              <th>
+                Status
+              </th>
+              <th>
+                Edit account
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+            <tr>
+              <th>
+                <%= user.id %>
+              </th>
+              <th>
+                <%= link_to user.name, admin_user_path(user) %>
+              </th>
+              <th>
+                <%= user.email %>
+              </th>
+              <th>
+                <% if user.is_deleted == false %>
+                Active
+                <% else %>
+                Inactive
+                <% end %>
+              </th>
+              <th>
+                <% if user.is_deleted == false %>
+                  <%= link_to "Delete account",admin_user_path(user,sort_update: "true"), method: :patch, class: "btn btn-outline-danger btn-sm" %>
+                <% else %>
+                  <%= link_to "Activate account",admin_user_path(user), method: :patch, class: "btn btn-outline-success btn-sm" %>
+                <% end %>
+              </th>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      	<div>
+          <p><%= paginate @users %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

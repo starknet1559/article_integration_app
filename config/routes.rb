@@ -29,15 +29,14 @@ Rails.application.routes.draw do
     resources :notifications, only: [:index,:destroy]
   end
 
-  devise_for :admins, controllers: {
-    sessions:      'admin/sessions',
-    registrations: 'admin/registrations'
-  }
-
   namespace :admin do
-    resources :users, only: [:index,:update]
+    root to: "homes#top"
+    resources :users, only: [:index,:update,:show]
+    resources :posts, only: [:index,:destroy]
   end
 
-
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
+  }
 
 end

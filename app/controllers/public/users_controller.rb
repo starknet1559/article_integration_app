@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.active.find(params[:id])
-    @posts = @user.posts.all
+    @posts = @user.posts.page(params[:page]).per(10)
   end
 
   def edit
@@ -22,7 +22,7 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    @users = User.active.page(params[:page]).per(20)
+    @users = User.active.page(params[:page]).per(10)
   end
 
   def withdraw

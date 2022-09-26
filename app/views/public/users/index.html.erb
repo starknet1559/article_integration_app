@@ -3,7 +3,7 @@
     <%= render 'layouts/sidebar' %>
     <div class="col-md-8">
       <%= render 'index', users: @users %>
+      <%= paginate @users %>
     </div>
-    <%= paginate @users %>
   </div>
 </div>

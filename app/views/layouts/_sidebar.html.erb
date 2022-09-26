@@ -4,6 +4,15 @@
         </button>
         <nav class="bd-links collapse show">
         <ul class="nav flex-column">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-home mr-1"></i>Home
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to "Popular", posts_path(sort_good: "true"), class: "dropdown-item" %>
+              <%= link_to "New", posts_path , class: "dropdown-item" %>
+            </div>
+          </li>
           <li class="nav-item">
             <%= link_to users_path, class: "nav-link active" do %>
               <i class="fas fa-users mr-1"></i>Users
@@ -21,10 +30,10 @@
           </li>
           <% current_user.genres.each do |genre| %>
             <li class="nav-item nav-link active">
-              <%= link_to genre.name, genre_path(genre.id) %>
               <%= link_to genre_genre_likes_path(genre), method: :delete do %>
                 <i class="fas fa-minus-circle"></i>
               <% end %>
+              <%= link_to genre.name, genre_path(genre.id) %>
             </li>
           <% end %>
           <li class="nav-item">

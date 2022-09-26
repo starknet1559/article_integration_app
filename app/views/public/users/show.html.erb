@@ -24,6 +24,7 @@
       </div>
       <div class="row my-3 border-top">
         <%= render 'public/posts/index', posts: @posts %>
+        <%= paginate @posts %>
       </div>
     </div>
 

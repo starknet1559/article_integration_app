@@ -1,0 +1,21 @@
+<div class="container">
+  <h5><%= Post.all.count %>Stories</h5>
+  <% @posts.each do |f| %>
+    <div class="card my-3">
+      <div class="row no-gutters">
+        <div class="col-md-auto">
+          <div class="card-body">
+            <div class="row">
+              <h6 class="card-title">Title:<%= f.title %></h6>
+              <%= link_to f.user.name, admin_user_path(f.user.id), class: "ml-3 text-muted" %>
+              <%= link_to "Delete", admin_post_path(f.id), method: :delete, class: "ml-3 text-danger", data: { confirm: "本当に削除しますか？" } %>
+            </div>
+            <a href="<%= f.content_url %>"><%= f.content_url %></a>
+            <p class="card-text"><%= f.description %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <p><%= paginate @posts %></p>
+</div>

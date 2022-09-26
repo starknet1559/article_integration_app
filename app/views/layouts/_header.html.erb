@@ -9,15 +9,6 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
   <% if user_signed_in? %>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-3">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle p-2 text-dark" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Home
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <%= link_to "Popular", posts_path(sort_good: "true"), class: "dropdown-item" %>
-          <%= link_to "New", posts_path , class: "dropdown-item" %>
-        </div>
-      </li>
       <li class="nav-item">
         <%= link_to notifications_path do %>
           <% if uncheck_notifications.any? %>
@@ -39,8 +30,19 @@
     <%= link_to user_path(current_user) , class: "p-2 text-dark" do %>
       <%= image_tag current_user.get_profile_image(50,50), class: "rounded-circle" %>
     <% end %>
-  <% else %>
-    <%= link_to "Admin", admin_session_path, class: "p-2 text-dark" %>
+  <% end %>
+  <% if admin_signed_in? %>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-3">
+      <li class="nav-item">
+        <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "p-2 text-dark" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Posts", admin_posts_path, class: "p-2 text-dark" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Users", admin_users_path, class: "p-2 text-dark" %>
+      </li>
+    </ul>
   <% end %>
   </div>
 </nav>
