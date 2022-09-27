@@ -14,7 +14,7 @@ class Public::GenresController < ApplicationController
     else
       @genres = Genre.all
       render :index
-      flash[:alert] = "すでに同じ名前のジャンルタグが存在します"
+      flash[:alert] = "正しく入力してください（１文字以上２０字以内）または同じ名前のタグが存在します"
     end
   end
 
