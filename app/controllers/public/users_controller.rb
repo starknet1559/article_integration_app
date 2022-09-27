@@ -31,6 +31,8 @@ class Public::UsersController < ApplicationController
     @user.post_comments.destroy_all
     @user.followings.destroy_all
     @user.followers.destroy_all
+    @user.active_notifications.destroy_all
+    @user.post_goods.destroy_all
     reset_session
     flash[:notice] = "またの入会をお待ちしております"
     redirect_to root_path

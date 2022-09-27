@@ -17,6 +17,8 @@ class Admin::UsersController < ApplicationController
       user.post_comments.destroy_all
       user.followings.destroy_all
       user.followers.destroy_all
+      user.active_notifications.destroy_all
+      user.post_goods.destroy_all
       redirect_to request.referer
     else
       user = User.find(params[:id])

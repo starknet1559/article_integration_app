@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 30 }
   validates :content_url, presence: true
   validates :description, presence: true
 
