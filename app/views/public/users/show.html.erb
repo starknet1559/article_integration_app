@@ -6,7 +6,10 @@
       <div class="media">
         <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
         <div class="media-body ml-3">
+          <div class="row">
           <h5 class="my-3"><%= @user.name %></h5>
+          <p class="ml-3 my-3 text-muted">ID:<%= @user.id %></p>
+          </div>
           <%= link_to @user.followers.count, user_followers_path(@user) %>Followers/
           <%= link_to @user.followings.count, user_followings_path(@user) %>Following
         </div>

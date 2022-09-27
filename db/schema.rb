@@ -110,9 +110,9 @@ ActiveRecord::Schema.define(version: 2022_09_21_064104) do
     t.integer "user_id", null: false
     t.string "title", null: false
     t.text "description", null: false
+    t.text "content_url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "content_url", null: false
   end
 
   create_table "relationships", force: :cascade do |t|
