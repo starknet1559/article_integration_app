@@ -3,6 +3,7 @@
     <%= render 'layouts/sidebar' %>
 
     <div class="col-md-8">
+      <%= render 'layouts/errors', obj: @post_new %>
       <h2>Post</h2>
       <%= javascript_pack_tag 'posts/new' %>
       <%= form_with model: @post_new, url: posts_path, local: true, method: :post do |f| %>
@@ -10,7 +11,7 @@
           <%= f.text_field :title, class: "form-control", placeholder: "title" %>
         </div>
         <div class="form-group">
-          <%= f.text_field :content_url, class: "form-control", placeholder: "url" %>
+          <%= f.url_field :content_url, class: "form-control", placeholder: "url" %>
         </div>
         <div class="form-group">
           <%= f.text_area :description, class: "form-control", placeholder: "description" %>
