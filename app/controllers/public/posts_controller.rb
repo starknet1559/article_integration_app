@@ -19,7 +19,7 @@ class Public::PostsController < ApplicationController
 
   def index
     if params[:sort_good]
-      @posts = Post.joins(:post_goods).where(post_goods: Post.created_this_week).group(:id).order("count(post_id) desc").page(params[:page]).per(10)
+      @posts = Post.active_post.created_this_week.joins(:post_goods).group(:id).order("count(post_goods.post_id) desc").page(params[:page]).per(10)
     else
       @posts = Post.active_post.order(created_at: :desc).page(params[:page]).per(10)
     end
