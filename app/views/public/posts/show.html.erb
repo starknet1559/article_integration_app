@@ -18,6 +18,10 @@
             <div class="ml-3 <%= "bad-btn-" + @post.id.to_s %>" >
               <%= render 'public/post_bads/bad', post: @post %>
             </div>
+            <div class="ml-3">
+              <i class="fas fa-eye"></i>
+              <%= @post.view_counts.count %>
+            </div>
           </div>
         </div>
       </div>
