@@ -27,6 +27,9 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    unless ViewCount.find_by(user_id: current_user.id, post_id: @post.id)
+      current_user.view_counts.create(post_id: @post.id)
+    end
     @user = @post.user
     @post_genres = @post.genres.all
     @post_comment = PostComment.new
