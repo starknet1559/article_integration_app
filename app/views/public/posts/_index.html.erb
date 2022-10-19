@@ -35,6 +35,10 @@
           <div class="text-center <%= "bad-btn-" + f.id.to_s %>" >
             <%= render 'public/post_bads/bad', post: f %>
           </div>
+          <div class="text-center text-primary">
+            <i class="far fa-comment"></i>
+            <%= f.post_comments.count %>
+          </div>
         </div>
 
       </div>
